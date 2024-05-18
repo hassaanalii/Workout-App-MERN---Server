@@ -14,7 +14,7 @@ app.use((req, res, next) => {
 })
 
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: process.env.REACT_URL,
     optionsSuccessStatus: 200,
 };
 
