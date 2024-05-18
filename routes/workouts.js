@@ -1,5 +1,4 @@
 const express = require('express')
-
 const router = express.Router()
 
 router.get("/", (req, res) => {
@@ -12,9 +11,8 @@ router.get("/:id", (req, res) => {
 
 })
 
-router.post("/", (req, res) => {
-    res.json({msg:"post "})
-
+router.post("/", async(req, res) => {
+   
 })
 
 router.delete("/:id", (req, res) => {
