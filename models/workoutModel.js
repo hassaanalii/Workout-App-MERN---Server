@@ -14,7 +14,11 @@ const WorkoutSchema = new Schema({
     load:{
         type: Number,
         required: true,
+    },
+    photoUrl: {
+        type: String,
     }
+    
 }, {timestamps: true})
 
 module.exports = mongoose.model('Workout', WorkoutSchema)

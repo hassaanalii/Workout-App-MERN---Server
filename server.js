@@ -5,6 +5,8 @@ const workoutRoutes = require('./routes/workouts');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
+const path = require('path');
+
 
 app.use(express.json())
 
@@ -17,6 +19,8 @@ const corsOptions = {
     origin: process.env.REACT_URL,
     optionsSuccessStatus: 200,
 };
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use(cors(corsOptions));
 
