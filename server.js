@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 const path = require('path');
+const userRoutes = require('./routes/users')
 
 
 app.use(express.json())
@@ -25,6 +26,8 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(cors(corsOptions));
 
 app.use('/api/workouts', workoutRoutes)
+app.use('/api/user', userRoutes)
+
 
 mongoose.connect(process.env.MONGO_URL)
     .then(() => {
