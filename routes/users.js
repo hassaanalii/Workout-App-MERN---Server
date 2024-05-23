@@ -3,6 +3,7 @@ const {
     loginUser,
     registerUser,
 } =  require('../controllers/userController')
+const { authCheck } = require('../middleware/auth')
 
 const router = express.Router()
 

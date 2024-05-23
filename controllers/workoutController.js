@@ -22,11 +22,13 @@ const createWorkout = async (req, res) => {
             return res.status(400).json({ error: err.message });
         }
 
+        const userId = req.userId
+        console.log(userId);
         const { title, reps, load } = req.body;
         const photoUrl = req.file ? req.file.path : '';
 
         try {
-            const workout = await Workout.create({ title, reps, load, photoUrl });
+            const workout = await Workout.create({ userId, title, reps, load, photoUrl });
             res.status(200).json(workout);
         } catch (error) {
             res.status(404).json({ error: error.message });
@@ -86,9 +88,14 @@ const updateWorkout = async (req, res) => {
 };
 
 
-const getWorkouts = async (req, res) =>{
-    const workouts = await Workout.find({}).sort({createdAt: -1})
-    res.status(200).json(workouts)
+const getWorkouts = async (req, res) => {
+    const userId = req.userId;
+    try {
+        const workouts = await Workout.find({ userId }).sort({ createdAt: -1 });
+        res.status(200).json(workouts);
+    } catch (error) {
+        res.status(500).json({ message: "Error retrieving workouts", error: error.message });
+    }
 }
 
 const singleWorkout = async (req, res) => {

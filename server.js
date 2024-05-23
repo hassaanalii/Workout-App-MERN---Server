@@ -6,7 +6,8 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
 const path = require('path');
-const userRoutes = require('./routes/users')
+const userRoutes = require('./routes/users');
+const { authCheck } = require('./middleware/auth');
 
 
 app.use(express.json())
@@ -25,7 +26,7 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use(cors(corsOptions));
 
-app.use('/api/workouts', workoutRoutes)
+app.use('/api/workouts', authCheck, workoutRoutes)
 app.use('/api/user', userRoutes)
 
 

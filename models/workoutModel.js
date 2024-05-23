@@ -17,6 +17,10 @@ const WorkoutSchema = new Schema({
     },
     photoUrl: {
         type: String,
+    },
+    userId:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users"
     }
     
 }, {timestamps: true})
